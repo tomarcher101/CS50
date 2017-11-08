@@ -1,0 +1,68 @@
+1.  
+
+So far the C standard has not actually perscribed the size/width of the data types used.
+Ints can be 32 bits or 62 bits depending on the system running the program.
+stdint.h is a header file that contains typedefs that define more accurate datatypes, defining ints of exact bit width.
+
+2.
+
+Using a data type such as uint8_t, allows you to be exact in the bit width your unsigned int is going to use.
+Not all machines and systems use the same bit architechture, once upon a time not all computers were Intel/AMD 64-bit CPUs.
+Different CPUs meant the size relationship between pointers, int types, long types, etc. change.
+These differences meant that programs would end up not working on different systems.
+Defining the width of your data types would allow you to make portable programs that would work on machines with different sized
+CPUs to the one the program was created on.
+
+3.
+
+BYTE = 1 byte
+DWORD = 4 bytes
+LONG = 4 bytes
+WORD = 2 bytes
+
+4.
+
+0x42 0x4d
+
+5.
+
+bfSize = The size in bytes of the whole bitmap file. Which includes the headerfiles.
+biSize = The number of bytes required by the scruture. The size of the BITMAPINFOHEADER header file.
+         biSize is constant and it equals 40 bytes.
+
+6.
+
+If biHeight is negative, the bitmap is a top-down Device Independent BMP and is drawn from the upper-left corner.
+It cannot be compressed.
+
+Taken from: https://msdn.microsoft.com/en-us/library/dd183376(v=vs.85).aspx
+
+7.  biBitCount
+
+8.  
+
+fopen could return a NULL value if the pointer variables "infile" and "outfile" do not actually point to valid file addresses.
+
+9.
+
+The 3rd argument of fread() is the quantity of units read.
+As the fread() in our code is just reading the BITMAPFILEHEADER and BITMAPINFOHEADER information,
+it only needs to read one element at a time.
+
+10.
+
+int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+= (4 - (3 * 3) % 4) % 4
+= (4 - 9 % 4) % 4
+= (4 - 1) % 4
+= 3
+
+11. fseek() allows you to rewind or fast-forward within a file, fastracking you to a certain location.
+
+12. fseek() takes the following form:
+
+int fseek ( FILE * stream, long int offset, int origin );
+
+SEEK_CUR is a constant that takes its place in the "int origin" part of the fseek function.
+The "origin" is the position used as reference for the offset.
+SEEK_CUR sets the reference position as the current position of the file pointer.
