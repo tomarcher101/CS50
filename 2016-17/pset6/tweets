@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+import nltk
+import os
+import sys
+
+from helpers import get_user_timeline
+from analyzer import Analyzer
+from termcolor import colored
+
+def main():
+
+    # ensure proper usage
+    if len(sys.argv) != 2:
+        sys.exit("Usage: ./tweets @twitterhandle")
+
+    user = (sys.argv[1]).lstrip("@")
+
+    userstweets = get_user_timeline(user, 200)
+
+    # absolute paths to lists
+    positives = os.path.join(sys.path[0], "positive-words.txt")
+    negatives = os.path.join(sys.path[0], "negative-words.txt")
+
+    # instantiate analyzer
+    analyzer = Analyzer(positives, negatives)
+
+    if userstweets == None:
+        print("Failed accessing the timelime of " + user)
+        sys.exit()
+
+    for tweet in userstweets:
+        score = analyzer.analyze(tweet)
+        if score > 0:
+            print(colored("{} {}".format(score, tweet), "green"))
+        elif score < 0:
+            print(colored("{} {}".format(score, tweet), "red"))
+        else:
+            print(colored("{} {}".format(score, tweet), "yellow"))
+
+if __name__ == "__main__":
+    main()

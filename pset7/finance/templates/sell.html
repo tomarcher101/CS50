@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+<h1>Sell</h1>
+<p>How many shares would you like to sell?</p>
+<form action="/sell/sold" method="post">
+    <div class="form-group">
+        <input autocomplete="off" {{ autosymbol }} class="form-control" name="symbol" placeholder="Stock Symbol" type="text" value="{{ sellSym }}"/><br>
+        <input autocomplete="off" {{ autoquantity }} class="form-control" name="shares" placeholder="Number of Shares" type="number"/><br>
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </div>
+</form>
+{% endblock %}

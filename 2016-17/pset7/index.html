@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <div class="table-responsive">
+        <table class="table">
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+            {% for stock in stocks %}
+            <tr>
+                <td>{{stock.symbol}}</td>
+                <td>{{stock.name}}</td>
+                <td>{{stock.quantity}}</td>
+                <td>{{stock.price}}</td>
+                <td>{{stock.totalcost}}</td>
+            </tr>
+            <tr>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td><b>Total Stock Worth</b></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><b>{{stocktotal}}</b></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <p></p>
+    </div>
+    <div class="table">
+        <table class="table">
+            <tr>
+                <t><b><u>Cash Remaining:   </u></b></t>
+                <t><span>   </span></t>
+                <t><span>   </span></t>
+                <t><b>{{cash}}</b></t>
+            </tr>
+        </table>
+    </div>
+    <div class="table">
+        <table class="table">
+            <tr>
+                <t><b><u>Grand Total Worth:   </u></b></t>
+                <t><span>   </span></t>
+                <t><span>   </span></t>
+                <t><b>{{grandtotal}}</b></t>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

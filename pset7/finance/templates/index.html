@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <div>
+        <h1>Here is your portfolio</h1>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <th>Stock</th>
+                <th>Shares Owned</th>
+                <th>Stock Price</th>
+                <th>Total Stock Value</th>
+            </tr>
+            {% for x in stockDB %}
+            <tr>
+                <td>{{ x.symbol }}</td>
+                <td>{{ x.quantity }}</td>
+                <td>{{ x.price }}</td>
+                <td>{{ x.total_cost }}</td>
+                <td><a class="btn btn-primary" href="/sell/{{ x.symbol }}">Sell</a></a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div>
+        <h3>Cash Available</h3>
+        <p>{{ cash }}</p>
+    </div>
+    <div>
+        <h3>Total Portfolio Value</h3>
+        <p><b>{{ totalPortfolioValue }}</b></p>
+    </div>
+
+{% endblock %}

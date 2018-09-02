@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <div>
+        <h1>History</h1>
+        <p>Here is your transaction history</p>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <th>Action</th>
+                <th>Stock</th>
+                <th>Stock Price</th>
+                <th>Quantity</th>
+                <th>Total Cost</th>
+                <th>Date of Trade</th>
+            </tr>
+            {% for x in transDB %}
+            <tr>
+                <td>{{ x.action }}</td>
+                <td>{{ x.symbol }}</td>
+                <td>{{ x.price }}</td>
+                <td>{{ x.quantity }}</td>
+                <td>{{ x.total_cost }}</td>
+                <td>{{ x.date_of_trade }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+{% endblock %}
